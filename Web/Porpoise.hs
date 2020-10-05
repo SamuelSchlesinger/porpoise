@@ -177,8 +177,11 @@ A server application which receives a request and responds.
 -}
 newtype Server m request response = Server
   { unServer :: request -> (response -> m ResponseReceived) -> m ResponseReceived }
-  deriving (Functor, Applicative, Monad, MonadIO, MonadFail, MonadReader request, MonadCont)
+  deriving (Functor, Applicative, Monad, MonadIO, MonadFail, MonadCont)
     via ReaderT request (ContT ResponseReceived m)
+
+askRequest :: Monad m => Server m request request
+askRequest = id
 
 instance Functor m => Profunctor (Server m) where
   dimap f g (Server h) = Server \request respond -> h (f request) (respond . g)
