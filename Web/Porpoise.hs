@@ -59,6 +59,7 @@ module Web.Porpoise
 , StreamingBody
   -- ** Miscellaneous re-exports
 , Status
+, mkStatus
 , Header
 , HeaderName
 , ResponseHeaders
