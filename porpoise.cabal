@@ -45,3 +45,4 @@ executable porpoise-example
   build-depends:       base >=4.12 && <4.16,
                        warp >=3.3,
                        porpoise
+  default-language:    Haskell2010
